@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul class="menu">
+            <li class="logo"><a href="index.html">Expance Tracker</a></li>
+            <li class="item"><a href="index.html">Dashboard</a></li>
+            <li class="item"><a href="AddExpances.html">Add Expances</a></li>
+            
+            <li class="item"><a href="AddCategory.html">Add Category</a></li>
+            <li class="item"><a href="Expance.html">Expance Limit</a>    </li>
+            
+            <li class="toggle"><a href="#"><i class="fas fa-bars"></i></a></li> 
+        </ul>
+    </nav>
+    </header>
+    <div class="container">
+      <form action="/action_page.php">
+        <div class="row">
+          <div class="heading">
+            <label for="fname">Expance</label>
+          </div>
+          <div class="inputField">
+            <input type="text" id="fname" name="firstname" placeholder="Expance Name..">
+          </div>
+        </div>
+        <div class="row">
+          <div class="heading">
+            <label for="subject">Description</label>
+          </div>
+          <div class="inputField">
+            <textarea id="subject" name="subject" placeholder="Write something about Expance.." style="height:100px"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="heading">
+            <label for="lname">Amount</label>
+          </div>
+          <div class="inputField">
+            <input type="number" id="lname" name="lastname" placeholder="Amount..">
+          </div>
+        </div>
+        
+        
+        <div class="row">
+          <div class="heading">
+            <label for="country">Category</label>
+          </div>
+          <div class="inputField">
+            <select id="country" name="country">
+              <option value="australia">A</option>
+              <option value="canada">B</option>
+              <option value="usa">C</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <input type="submit" value="Submit">
+        </div>
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
