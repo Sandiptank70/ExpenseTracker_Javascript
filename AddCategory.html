@@ -24,7 +24,7 @@
   </nav>
   </header>
   <div class="container">
-  <form action="/action_page.php">
+  <form action="#" method="post">
     <div class="row">
       <div class="heading">
         <label for="fname">Category Name</label>
@@ -43,10 +43,24 @@
     </div>
     
     <div class="row">
-      <input type="submit" value="Submit">
+      <input type="button" value="Submit" class="SubmitCategory" id="submitCategory" onclick="myCreateFunction()">
     </div>
   </form>
 </div>
+<div style="overflow-x:auto;">
+  <table class="listCategory" id="ListCategory">
+    
+    <tr>
+      <th>No</th>
+      <th>Category Name</th>
+      <th>Expance Limit</th>
+    </tr>
+    
+    
+    
+  </table>
+</div>
+
 
 <script src="script.js"></script>
 </body>
