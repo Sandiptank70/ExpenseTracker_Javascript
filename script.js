@@ -1,6 +1,7 @@
 const toggle = document.querySelector(".toggle");
 const menu = document.querySelector(".menu");
 
+let data=[]
 /* Toggle mobile menu */
 function toggleMenu() {
   if (menu.classList.contains("active")) {
@@ -17,13 +18,8 @@ function toggleMenu() {
 }
 
 const UpdateLclStorage = () => {
-  const Category=document.querySelectorAll('tr');
+  localStorage.setItem('data',JSON.stringify(data))
   
-  const rows=[];
-  Category.forEach((row)=>{
-    console.log(row)
-  })
-
 };
 
 
@@ -31,19 +27,45 @@ const UpdateLclStorage = () => {
 toggle.addEventListener("click", toggleMenu, false);
 
 function myCreateFunction() {
-  var table = document.getElementById("ListCategory");
+  let CatName=document.getElementById("Name").value
   
-  const tabledata = `<tr>
-      <td>2</td>
-      <td class="name" value="${document.getElementById("fname").value}">${
-    document.getElementById("fname").value
-  }</td>
-      <td value="${document.getElementById("fname").value}" class="lname">${document.getElementById("lname").value}</td>
-      <td><button id="EditCategory" onclick="EditCategory(this)">Edit</button></td>
-      <td><button id="DeleteCategory" onclick="DeleteCategory(this)">Delete</button></td>
-    </tr>`;
-  table.insertAdjacentHTML("beforeend", tabledata);
+  let Exp=document.getElementById("Expance").value
+  document.getElementById("Name").innerHTML=""
+      document.getElementById("Expance").innerHTML=""
+  let CategoryJson={}
+  CategoryJson={Name:CatName,ExpanceLimit:Exp,ExpanceName:[],ExpanceDescription:[],ExpanceAmount:[]};
+  data.push(CategoryJson);
+  
+  
   UpdateLclStorage();
+  display();
+}
+const display=()=>{
+  const tbl=document.getElementById("ListCategory")
+  tbl.innerHTML=`<tr>
+  <th>No</th>
+  <th>Category Name</th>
+  <th>Expance Limit</th>
+  <th></th>
+  <th></th> 
+</tr>`
+  data.forEach((cur,index,array)=>{
+      let tbldata=`
+      <tr>
+      <td value="${index+1}" id="Id">${index+1}</td>
+      <td value="${cur.Name}">${cur.Name}</td>
+      <td value="${cur.ExpanceLimit}">${cur.ExpanceLimit}</td>
+      <td><button id="EditCategory" onclick="EditCategory(this)" value="${index}">Edit</button></td>
+      <td><button id="DeleteCategory" onclick="DeleteCategory(this)" value="${index}">Delete</button></td>
+      </tr>
+      `
+      
+      tbl.insertAdjacentHTML("beforeend", tbldata);
+
+  });
+  
+  
+  
 }
 
 // Edit Category
@@ -58,7 +80,18 @@ function EditCategory(o) {
 
 // Delete Category
 function DeleteCategory(o) {
-  console.log(o);
-  var p = o.parentNode.parentNode;
-  p.parentNode.removeChild(p);
+  let value=o.value
+  console.log(value)
+  let a=data.splice(value, 1)
+  display();
+  UpdateLclStorage()
+  
 }
+
+// get Data From Local storage
+const GetData=()=>{
+  
+  data=JSON.parse(localStorage.getItem('data'))
+  display();
+}
+ 

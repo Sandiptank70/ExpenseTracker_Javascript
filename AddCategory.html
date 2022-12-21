@@ -8,7 +8,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body onload="GetData()">
   <header>
     <nav>
       <ul class="menu">
@@ -30,7 +30,7 @@
         <label for="fname">Category Name</label>
       </div>
       <div class="inputField">
-        <input type="text" id="fname" name="firstname" placeholder="Category Name..">
+        <input type="text" id="Name" name="firstname" placeholder="Category Name..">
       </div>
     </div>
     <div class="row">
@@ -38,7 +38,7 @@
         <label for="lname">Expance Limit</label>
       </div>
       <div class="inputField">
-        <input type="number" id="lname" name="lastname" placeholder="Expance Limit..">
+        <input type="number" id="Expance" name="lastname" placeholder="Expance Limit..">
       </div>
     </div>
     
@@ -50,11 +50,7 @@
 <div style="overflow-x:auto;">
   <table class="listCategory" id="ListCategory">
     
-    <tr>
-      <th>No</th>
-      <th>Category Name</th>
-      <th>Expance Limit</th>
-    </tr>
+    
     
     
     
