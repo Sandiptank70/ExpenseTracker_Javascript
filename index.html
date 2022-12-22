@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
   </head>
-  <body>
+  <body onload="loadindex()">
     <div>
       <header>
         <nav>
@@ -24,29 +24,57 @@
           </ul>
       </nav>
       </header>
-      <div class="containerindex">
-        <div class="category">
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
+      <div class="row" id="row">
+        <div class="column1">
+          <table id="CategoryTbl">
+            <caption>
+              <h3>Category</h3>
+            </caption>
+            <tr>
+              <th>SR</th>
+              <th>Category</th>
+              
+            </tr>
+            
+            
+          </table>
         </div>
-        <div class="expance">
-          <p>1</p>
-          <p>1</p>
-          <p>1</p>
-          <p>1</p>
-          <p>1</p>
-          <p>1</p>
-          <p>1</p>
-          <p>1</p>
+        <div class="column2">
+          <table id="ExpanceTbl">
+            <caption>
+              <h3>Expances</h3>
+            </caption>
+            <tr>
+              <th>Category</th>
+              <th>Expance</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>&nbsp</th>
+              <th>&nbsp</th>
+            </tr>
+           
+            
+          </table>
         </div>
-
       </div>
-    </div>
+      <div>
+        <hr>
+        <table>
+          <caption>
+            <h3>Total Expance</h3>
+          </caption>
+          <tr>
+            <td><label for="Expance Limit" id="expanceLimitLbl">Expance Limit:</label></td>
+            <td><label for="Expance Limit" id="expanceLimitAmount">10000</label></td>
+            <td><label for="Expance Limit" id="TotalExpanceLbl">Total Expances:</label></td>
+            <td><label for="Expance Limit" id="TotalExpanceAmount">7000</label></td>
+            <td><label for="Expance Limit">Avalible Balance:</label></td>
+            <td><label for="Expance Limit" id="AvalibleBalanceAmount">3000</label></td>
+          </tr>
+        </table>
+        <hr>
+      </div>
+      
     <script src="script.js"></script>
   </body>
 </html>

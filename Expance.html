@@ -9,7 +9,7 @@
     <title>thapa Technical</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
+  <body onload="loadExpanceLimit()">
     <header>
       <nav>
         <ul class="menu">
@@ -31,13 +31,16 @@
             <label for="fname">Expance Limit</label>
           </div>
           <div class="inputField">
-            <input type="text" id="fname" name="firstname" placeholder="Add Expance Limit..">
+            <input type="number" id="AddExpanceLimit" name="AddExpanceLimit" placeholder="Add Expance Limit..">
           </div>
         </div>
 
 
         <div class="row">
-          <input type="submit" value="Submit">
+          <input type="button" value="Submit" onclick="AddAmt()">
+        </div>
+        <div>
+          <P id="Balance">Avalible Balance:0</P>
         </div>
       </form>
     </div>

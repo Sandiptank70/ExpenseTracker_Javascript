@@ -5,6 +5,7 @@ body {
 nav {
   background: #f2f2f2;
   padding: 0 15px;
+  
 }
 a {
   color: #444;
@@ -170,26 +171,30 @@ input[type=submit]:hover {
 
 }
 /* Dashboard */
-.category
-{
-  width: 40%;
-  max-height: 200px;
-  border: 2px solid;
-  float: left;
-  overflow: scroll;
+.row {
+  display: flex;
+  margin-left:-5px;
+  margin-right:-5px;
 }
 
-.expance
-{
-  width: 40%;
-  max-height: 200px;
-  border: 2px solid;
-  float: right;
-  overflow: scroll;
+.column1 {
   
+  width: 20%;
+  max-height: 400px;
+  padding: 5px;
 }
+.column2 {
+  width: 80%;
+  max-height: 400px;
+  scroll-behavior: smooth;
+  overflow: scroll;
+  padding: 5px;
+}
+
 .containerindex{
   background-color: #f2f2f2;
+  display: flex;
+  flex-wrap: wrap;
   min-height: 200px;
   max-height: 500px;
   margin: 10px;
@@ -201,7 +206,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-  max-height: 30px;
+  max-height: 10%;
   overflow: scroll;
   border: 1px solid #ddd;
 }
