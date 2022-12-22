@@ -59,7 +59,7 @@
       </div>
       <div>
         <hr>
-        <table>
+        <table id="InfoTbl">
           <caption>
             <h3>Total Expance</h3>
           </caption>
@@ -68,8 +68,27 @@
             <td><label for="Expance Limit" id="expanceLimitAmount">10000</label></td>
             <td><label for="Expance Limit" id="TotalExpanceLbl">Total Expances:</label></td>
             <td><label for="Expance Limit" id="TotalExpanceAmount">7000</label></td>
-            <td><label for="Expance Limit">Avalible Balance:</label></td>
+            <td><label for="Expance Limit" id="AvalibleBalanceLbl">Avalible Balance:</label></td>
             <td><label for="Expance Limit" id="AvalibleBalanceAmount">3000</label></td>
+          </tr>
+        </table>
+        <table id="EditTbl" style="width: 100%;">
+          <caption>
+            <h3>Edit Data</h3>
+          </caption>
+          <tr>
+            <td><label for="ExpanceName" id="">Name</label></td>
+            <td><input type="text" id="ExpanceNameTxt"></td>
+            <td><label for="Expance Limit" id="TotalExpanceLbl">Description</label></td>
+            <td><input type="text" id="ExpanceDescriptionTxt"></td>
+            <td><label for="Expance Limit" id="AvalibleBalanceLbl">Amount</label></td>
+            <td><input type="text" id="ExpanceAmountTxt"></td>
+            <td><label for="Expance Limit" id="AvalibleBalanceLbl">Category</label></td>
+            <td><select id="EditExpanceCategory" name="AddExpanceCategory">
+              
+            </select></td>
+            <td><input type="button" id="ExpanceSave" value="Save" onclick="SaveEditExpances()"></td>
+
           </tr>
         </table>
         <hr>
