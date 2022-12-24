@@ -25,7 +25,7 @@ const loadindex=()=> {
     <tr>
       <th style="width:15%">Category</th>
       <th style="width:15%">Expance</th>
-      <th style="width:40%;text-align: center;overflow: hidden;">Description</th>
+      <th style="width:40%;text-align: center;">Description</th>
       <th style="width:10%">Amount</th>
       <th>&nbsp</th>
       <th>&nbsp</th>
@@ -33,16 +33,18 @@ const loadindex=()=> {
     TotalExpanceAmount=0
       data.forEach((cur, index, array) => {
         let length = cur.ExpanceName.length;
-  
+        
         cur.ExpanceName.forEach((current, index, array) => {
            TotalExpanceAmount+=parseInt(cur.ExpanceAmount[index])  
           
           let tbldata = `
           <tr>
-          <td value="${cur.Name}" id="Id">${cur.Name}</td>
-          <td value="${current}" id="Id">${current}</td>
-          <td value="${cur.ExpanceDescription[index]}" id="Id" style="column">${cur.ExpanceDescription[index]}</td>
-          <td value="${cur.ExpanceAmount[index]}" id="Id">${cur.ExpanceAmount[index]}</td>
+          <td value="${cur.Name}" id="Id" style="width:15%">${cur.Name}</td>
+          <td value="${current}" id="Id" style="width:15%">${current}</td>
+          
+          <td style="width:100px;">
+              ${cur.ExpanceDescription[index]}</td>
+          <td value="${cur.ExpanceAmount[index]}" id="Id" style="width:10%">${cur.ExpanceAmount[index]}</td>
           
           
           <td><button id="EditCategory" onclick="EditExpance(this)" value="${index}">Edit</button></td>
@@ -50,14 +52,15 @@ const loadindex=()=> {
           
           </tr>
           `;
-  
+          
           ExpanceTbl.insertAdjacentHTML("beforeend", tbldata);
         });
+
       });
   
       data.forEach((cur, index, arr) => {
         let tbldata = `
-          <tr>
+          <tr id="Category${index}">
           <td value="${index + 1}" id="Id">${index + 1}</td>
   
           <td value="${
@@ -68,8 +71,17 @@ const loadindex=()=> {
           
           </tr>
           `;
-  
+        
         CategoryTbl.insertAdjacentHTML("beforeend", tbldata);
+        if(parseInt(data[index].AvalibleAmount)<0)
+        {
+          document.getElementById(`Category${index}`).style.color="red"
+        }
+        else
+        {
+          document.getElementById(`Category${index}`).style.color="black"
+        }
+        
       });
     } else {  
       console.log("data not Found");
@@ -241,8 +253,9 @@ const SaveEditExpances=()=>
       "TotalExpanceLbl"
     ).innerHTML = `Total Expance Of ${FilterCategoryName} Category`;
     document.getElementById("TotalExpanceAmount").innerHTML = `${CatExpance}`;
-    document.getElementById("AvalibleBalanceLbl").style.visibility = "hidden";
-    document.getElementById("AvalibleBalanceAmount").style.visibility = "hidden";
+
+    
+    document.getElementById("AvalibleBalanceAmount").innerHTML = `${TotalCatexpance-CatExpance}`;
   }
   
   

@@ -70,6 +70,7 @@ const myCreateFunction=()=> {
         ExpanceName: [],
         ExpanceDescription: [],
         ExpanceAmount: [],
+        AvalibleAmount:Exp
       };
         console.log(window.data)
       data.push(CategoryJson)
@@ -78,8 +79,23 @@ const myCreateFunction=()=> {
       data.forEach((current,Index,array)=>{
         if(Index==index)
         {
+          let Diffrance=parseInt(Exp)-parseInt(current.ExpanceLimit)
           current.Name=CatName
           current.ExpanceLimit=Exp
+          let curAvalible =current.AvalibleAmount
+          
+          alert(Diffrance)
+          if(parseInt(Diffrance)<0)
+          {
+            alert("less")
+          current.AvalibleAmount=curAvalible+Diffrance
+          }
+          else
+          {
+            alert("More")
+            
+            current.AvalibleAmount+=Diffrance
+        }
 
         }
       })
@@ -87,5 +103,7 @@ const myCreateFunction=()=> {
     }
     index=-1
     UpdateLclStorage();
+    document.getElementById("Name").value = ""
+    document.getElementById("Expance").value=""
     display();
   }

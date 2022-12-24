@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
   </head>
@@ -13,16 +14,16 @@
       <header>
         <nav>
           <ul class="menu">
-              <li class="logo"><a href="index.html">Expance Tracker</a></li>
-              <li class="item"><a href="index.html">Dashboard</a></li>
-              <li class="item"><a href="AddExpances.html">Add Expances</a></li>
-              
-              <li class="item"><a href="AddCategory.html">Add Category</a></li>
-              <li class="item"><a href="Expance.html">Expance Limit</a>    </li>
-              
-              <li class="toggle" id="cross"><a href="#"><i class="fas fa-bars" style="color: black;" ></i></a></li> 
+            <li class="logo"><a href="index.html">Expance Tracker</a></li>
+            <li class="item"><a href="index.html">Dashboard</a></li>
+            <li class="item"><a href="AddExpances.html">Add Expances</a></li>
+            <li class="item"><a href="AddCategory.html">Add Category</a></li>
+            <li class="item"><a href="Expance.html">Expance Limit</a> </li>
+
+            <li class="toggle" id="cross"><a href="#"><i class="fas fa-bars"
+                  style="color: black;"></i></a></li>
           </ul>
-      </nav>
+        </nav>
       </header>
       <div class="row" id="row">
         <div class="column1">
@@ -33,10 +34,10 @@
             <tr>
               <th>SR</th>
               <th>Category</th>
-              
+
             </tr>
-            
-            
+
+
           </table>
         </div>
         <div class="column2">
@@ -52,8 +53,8 @@
               <th>&nbsp</th>
               <th>&nbsp</th>
             </tr>
-           
-            
+
+
           </table>
         </div>
       </div>
@@ -68,7 +69,8 @@
             <td><label for="Expance Limit" id="expanceLimitAmount">10000</label></td>
             <td><label for="Expance Limit" id="TotalExpanceLbl">Total Expances:</label></td>
             <td><label for="Expance Limit" id="TotalExpanceAmount">7000</label></td>
-            <td><label for="Expance Limit" id="AvalibleBalanceLbl">Avalible Balance:</label></td>
+            <td><label for="Expance Limit" id="AvalibleBalanceLbl">Avalible
+                Balance:</label></td>
             <td><label for="Expance Limit" id="AvalibleBalanceAmount">3000</label></td>
           </tr>
         </table>
@@ -77,24 +79,27 @@
             <h3>Edit Data</h3>
           </caption>
           <tr>
+            <td><label for="Expance Limit" id="AvalibleBalanceLbl">Category</label></td>
+            <td><select id="EditExpanceCategory" name="AddExpanceCategory">
+            </select></td>
             <td><label for="ExpanceName" id="">Name</label></td>
             <td><input type="text" id="ExpanceNameTxt"></td>
             <td><label for="Expance Limit" id="TotalDescriptionLbl">Description</label></td>
             <td><input type="text" id="ExpanceDescriptionTxt"></td>
             <td><label for="Expance Limit" id="AvalibleBalanceLbl">Amount</label></td>
             <td><input type="text" id="ExpanceAmountTxt"></td>
-            <td><label for="Expance Limit" id="AvalibleBalanceLbl">Category</label></td>
-            <td><select id="EditExpanceCategory" name="AddExpanceCategory">
-              
-            </select></td>
-            <td><input type="button" id="ExpanceSave" value="Save" onclick="SaveEditExpances()"></td>
+            
+            
+            <td><input type="button" id="ExpanceSave" value="Save"
+                onclick="SaveEditExpances()"></td>
 
           </tr>
         </table>
         <hr>
       </div>
-      
-    <script src="js/index.js"></script>
-    
-  </body>
-</html>
+
+      <script src="js/index.js"></script>
+      <script src="js/AddExpances.js"></script>
+
+    </body>
+  </html>
