@@ -1,10 +1,10 @@
-const toggle = document.querySelector(".toggle");
+toggle = document.querySelector(".toggle");
 const menu = document.querySelector(".menu");
 let TotalExpanceAmount = 0;
 let AvalibleBalance = 0;
 let flag = 0;
 let index = 0;
-let data = [];
+var data = [];
 /* Toggle mobile menu */
 function toggleMenu() {
   if (menu.classList.contains("active")) {
