@@ -80,14 +80,15 @@
           </caption>
           <tr>
             <td><label for="Expance Limit" id="AvalibleBalanceLbl">Category</label></td>
-            <td><select id="EditExpanceCategory" name="AddExpanceCategory">
+            <td><select id="EditExpanceCategory" name="AddExpanceCategory" onchange="IndexofCategory()">
+              <option disabled selected value>Select</option>
             </select></td>
             <td><label for="ExpanceName" id="">Name</label></td>
             <td><input type="text" id="ExpanceNameTxt"></td>
             <td><label for="Expance Limit" id="TotalDescriptionLbl">Description</label></td>
             <td><input type="text" id="ExpanceDescriptionTxt"></td>
             <td><label for="Expance Limit" id="AvalibleBalanceLbl">Amount</label></td>
-            <td><input type="text" id="ExpanceAmountTxt"></td>
+            <td><input type="text" id="ExpanceAmountTxt" onkeyup="return CheckExpanceLimit(event)"></td>
             
             
             <td><input type="button" id="ExpanceSave" value="Save"
@@ -95,11 +96,11 @@
 
           </tr>
         </table>
-        <hr>
+        <hr>  
       </div>
 
       <script src="js/index.js"></script>
-      <script src="js/AddExpances.js"></script>
+      
 
     </body>
   </html>

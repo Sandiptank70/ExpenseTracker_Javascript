@@ -31,7 +31,7 @@ const DeleteCategory=(o)=> {
     display();
     UpdateLclStorage();
   }
-  
+ var CatagoryTotalAmount=0 
 const display = () => {
     const tbl = document.getElementById("ListCategory");
     tbl.innerHTML = `<tr>
@@ -42,6 +42,7 @@ const display = () => {
     <th></th> 
   </tr>`;
     data.forEach((cur, index, array) => {
+      CatagoryTotalAmount+=parseInt(cur.ExpanceLimit)
       let tbldata = `
         <tr>
         <td value="${index + 1}" id="Id">${index + 1}</td>
@@ -107,3 +108,36 @@ const myCreateFunction=()=> {
     document.getElementById("Expance").value=""
     display();
   }
+
+
+
+  var ExpanceLimitAlertFlag = 0;
+const CheckExpanceLimit = (e) => {
+  AvalibleBalance = localStorage.getItem("Amount");
+  // let indexvalue = data[SeletedCategoryIndex].ExpanceLimit;
+  let Expancevalue = document.getElementById("Expance").value;
+  
+  if (
+    parseInt(Expancevalue) <=
+    parseInt(AvalibleBalance-CatagoryTotalAmount)
+  ) {
+    document.getElementById("Expance").style.color = "black";
+    // document.getElementById("Alart").style.display="none"
+    ExpanceLimitAlertFlag = 0;
+  } else {
+    //document.getElementById("Expance").style.color = "red";
+    // document.getElementById("Alart").style.display="inline-block"
+    if (ExpanceLimitAlertFlag == 0) {
+      
+        alert(
+          `You can Not Add Morethan Your Expance Limit ???`
+        ) 
+       
+        document.getElementById("Expance").value = "";
+        document.getElementById("Name").value = "";
+        
+      
+      ExpanceLimitAlertFlag = 1;
+    }
+  }
+};

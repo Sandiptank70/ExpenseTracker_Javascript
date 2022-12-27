@@ -6,6 +6,16 @@ const UpdateLclStorage = () => {
   localStorage.setItem("data", JSON.stringify(data));
 };
 
+
+AvalibleBalance = localStorage.getItem("Avalible");
+
+
+
+
+
+
+
+
 const loadindex=()=> {
     GetData();
     if (data.length != 0) {
@@ -68,7 +78,7 @@ const loadindex=()=> {
           }" style="cursor: pointer;" onclick="FilterCategory(this)">${
           cur.Name
         }</td>
-          
+          <td><img src="alert-icon-red-11.png" style="width:30%;display:none" id="img${index}"></td>
           </tr>
           `;
         
@@ -76,6 +86,7 @@ const loadindex=()=> {
         if(parseInt(data[index].AvalibleAmount)<0)
         {
           document.getElementById(`Category${index}`).style.color="red"
+          document.getElementById(`img${index}`).style.display="inline-table"
         }
         else
         {
@@ -86,6 +97,7 @@ const loadindex=()=> {
     } else {  
       console.log("data not Found");
       const DivClass = document.getElementById("row");
+      document.getElementById('InfoTbl').style.display="none"
       DivClass.innerHTML = "Data Not Found";
     }
   
@@ -100,39 +112,156 @@ const loadindex=()=> {
     ).innerHTML = `${AvalibleBalance}`;
     TotalExpanceAmount = 0;
   }
+
+
+
+
+
+
+
+
+  var FillCategoryFlag = 0;
+  const EditExpance=(o)=> {
+    
+      editValue=o.value
+      // console.log(editValue)
+      const EditCategoryList=document.getElementById('EditExpanceCategory')
+      GetData();
+      SeletedCategoryIndex = -1;
+          document.getElementById('InfoTbl').style.display = "none";
+          document.getElementById('EditTbl').style.display = "inline-table";
+          // let Avalible = localStorage.getItem("Avalible");
+          if (FillCategoryFlag == 0) {
+      data.forEach((Current, Index, array) => {
+        
+        let option = document.createElement("option");
+        option.value = Current.Name;
+        option.text = Current.Name;
+        EditCategoryList.appendChild(option);})
+        FillCategoryFlag = -1;
+      }
+        var p = o.parentNode.parentNode;
+        CurrentExpanceAmount=p.childNodes[7].innerHTML
+        document.getElementById("ExpanceNameTxt").value = p.childNodes[3].innerHTML;
+        document.getElementById("ExpanceDescriptionTxt").value = p.childNodes[5].innerHTML;
+        document.getElementById("ExpanceAmountTxt").value = p.childNodes[7].innerHTML;
+        CategoryName=o.parentNode.parentNode.childNodes[1].innerHTML;
+        
+        let selectObj=document.getElementById("EditExpanceCategory")
+        
+        for (var i = 0; i < selectObj.options.length; i++) {
+          if (selectObj.options[i].text== CategoryName) {
+              selectObj.options[i].selected = true;
+              SeletedCategoryIndex=i-1
+              
   
-const EditExpance=(o)=> {
-    editValue=o.value
-    console.log(editValue)
-    const EditCategoryList=document.getElementById('EditExpanceCategory')
-    GetData();
-        document.getElementById('InfoTbl').style.display = "none";
-        document.getElementById('EditTbl').style.display = "inline-table";
-        let Avalible = localStorage.getItem("Avalible");
-    data.forEach((Current, Index, array) => {
-      
-      let option = document.createElement("option");
-      option.value = Current.Name;
-      option.text = Current.Name;
-      EditCategoryList.appendChild(option);})
-      var p = o.parentNode.parentNode;
-      document.getElementById("ExpanceNameTxt").value = p.childNodes[3].innerHTML;
-      document.getElementById("ExpanceDescriptionTxt").value = p.childNodes[5].innerHTML;
-      document.getElementById("ExpanceAmountTxt").value = p.childNodes[7].innerHTML;
-      CategoryName=o.parentNode.parentNode.childNodes[1].innerHTML;
-      
-      let selectObj=document.getElementById("EditExpanceCategory")
-      
-      for (var i = 0; i < selectObj.options.length; i++) {
-        if (selectObj.options[i].text== CategoryName) {
-            selectObj.options[i].selected = true;
-            return;
-        }
+              return;
+          }
+      }
+    
+      index = o.value;
+    
     }
   
-    index = o.value;
+
+
+
+
+
+
+
+
+
+
+
+var ExpanceLimitAlertFlag = 0;
+const CheckExpanceLimit = (e) => {
+  
+  
+  let Expancevalue = document.getElementById("ExpanceAmountTxt").value;
+  let CategoryAvalibleBalance=data[SeletedCategoryIndex].AvalibleAmount
+  
+  
+  if(ExitExpanceCategoryChange==0)
+  {
+  //   console.log("Expance Value",Expancevalue)
+  // console.log("Avable value Value",CategoryAvalibleBalance)
+    if(parseInt(Expancevalue)<parseInt(CategoryAvalibleBalance))
+    {
+      // console.log("Expance Value",Expancevalue)
+      // console.log("Avable value Value",CategoryAvalibleBalance)
+      document.getElementById("ExpanceAmountTxt").style.color="black";
+      ExpanceLimitAlertFlag= 0;
+    }
+    else
+    {
+      document.getElementById("ExpanceAmountTxt").style.color="red";
+      console.log("Expance Value",Expancevalue)
+      console.log("Avable value Value",CategoryAvalibleBalance)
+      if (ExpanceLimitAlertFlag == 0)
+      {
+        if (
+          confirm(`It is Above ${data[SeletedCategoryIndex].Name} Category Limit Or Total
+          Expance Limit Can you Add Expance ???`
+          ) != true)
+          {
+            document.getElementById('InfoTbl').style.display="inline-table";
+            document.getElementById('EditTbl').style.display="none";
+          }
+          ExpanceLimitAlertFlag= 1;
+      }
+    }
   
   }
+
+  };
+
+
+
+
+
+
+
+
+  var ExitExpanceCategoryChange=0
+
+const IndexofCategory = () => {
+    SeletedCategoryIndex =
+      // document.getElementById("EditExpanceCategory").selectedIndex - 1;
+      ExitExpanceCategoryChange=1
+    // if (SeletedCategoryIndex != -1) {
+    //   document.getElementById("ExpanceName").disabled = false;
+    //   document.getElementById("ExpanceDescription").disabled = false;
+    //   document.getElementById("ExpanceAmount").disabled = false;
+    // }
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const SaveEditExpances=()=>
   {
     
@@ -143,37 +272,56 @@ const SaveEditExpances=()=>
     let ExpanceAmount=document.getElementById("ExpanceAmountTxt")
     if(CategoryName==text)
     {
-      data.forEach((Current, index, array) => {
-        if (Current.Name == text) {
-          // CategoryJson = {
-          //   Name: CatName,
-          //   ExpanceLimit: Exp,
-          //   ExpanceName: [],
-          //   ExpanceDescription: [],
-          //   ExpanceAmount: [],
-          // };
-          console.log(editValue)
-          let a = Current.ExpanceName.splice(editValue, 1,ExpanceName.value);
-          let b = Current.ExpanceDescription.splice(editValue, 1,Description.value);
-          let c = Current.ExpanceAmount.splice(editValue, 1,ExpanceAmount.value);
-          editValue=0
-          // Current.ExpanceName.push(ExpanceName.value);
-          // Current.ExpanceDescription.push(Description.value);
-          // Current.ExpanceAmount.push(ExpanceAmount.value);
-        }
-      });
-      UpdateLclStorage();
-      document.getElementById('InfoTbl').style.display = "inline-table";
-        document.getElementById('EditTbl').style.display = "none";
-      loadindex();
-      // alert(`Add ${ExpanceName.value} In ${text} Category`);
+      
+        // let CategoryAvalibleBalance=data[SeletedCategoryIndex].AvalibleAmount
+        let Diffrance=parseInt(CurrentExpanceAmount)-parseInt(ExpanceAmount.value)
+        data[SeletedCategoryIndex].AvalibleAmount+=parseInt(Diffrance)
+        alert(data[SeletedCategoryIndex].AvalibleAmount)
+      data[SeletedCategoryIndex].ExpanceName[editValue]=ExpanceName.value
+      data[SeletedCategoryIndex].ExpanceDescription[editValue]=Description.value
+      data[SeletedCategoryIndex].ExpanceAmount[editValue]=ExpanceAmount.value
+      
+      // data.forEach((Current, index, array) => {
+      //   if (Current.Name == text) {
+          
+      //     // console.log(editValue)
+      //     let a = Current.ExpanceName.splice(editValue, 1,ExpanceName.value);
+      //     let b = Current.ExpanceDescription.splice(editValue, 1,Description.value);
+      //     let c = Current.ExpanceAmount.splice(editValue, 1,ExpanceAmount.value);
+      //     editValue=0
+          
+      //   }
+      // });
+      
+      
       
     }
     else
     {
-      console.log(editValue);
-  
+      let index=parseInt(CategoryList.selectedIndex)-1
+
+      alert(CategoryList.selectedIndex);
+      alert(editValue)
+      data.forEach((current, index, array) => {
+        if (current.Name == CategoryName) {
+          let a = current.ExpanceName.splice(editValue, 1);
+          let b = current.ExpanceDescription.splice(editValue, 1);
+          data[index].AvalibleAmount+=parseInt(CurrentExpanceAmount)
+          let c = current.ExpanceAmount.splice(editValue, 1);
+        }
+      });
+      data[index].ExpanceName.push(ExpanceName.value)
+      data[index].ExpanceDescription.push(Description.value)
+      data[index].ExpanceAmount.push(ExpanceAmount.value)
+      data[index].AvalibleAmount-=parseInt(ExpanceAmount.value)
+
+
+      
     }
+    UpdateLclStorage();
+      document.getElementById('InfoTbl').style.display = "inline-table";
+        document.getElementById('EditTbl').style.display = "none";
+      loadindex();
   }
   const DeleteExpance=(o)=> {
     let value = o.value;
@@ -182,6 +330,7 @@ const SaveEditExpances=()=>
       if (current.Name == CatName) {
         let a = current.ExpanceName.splice(value, 1);
         let b = current.ExpanceDescription.splice(value, 1);
+        data[index].AvalibleAmount+=parseInt(current.ExpanceAmount[value])
         let c = current.ExpanceAmount.splice(value, 1);
       }
     });
@@ -232,9 +381,8 @@ const SaveEditExpances=()=>
       <td value="${cur.ExpanceDescription[index]}" id="Id">${cur.ExpanceDescription[index]}</td>
       <td value="${cur.ExpanceAmount[index]}" id="Id">${cur.ExpanceAmount[index]}</td>
       
-      <td><button id="EditCategory" onclick="EditExpance(this) value="${index}">Edit</button></td>
-      
-      <td><button id="DeleteCategory" onclick="DeleteExpance(this)" value="${index}">Delete</button></td>
+      <td><button id="EditCategory" onclick="EditExpance(this)" value="${index}">Edit</button></td>
+          <td><button id="DeleteCategory" onclick="DeleteExpance(this)" value="${index}">Delete</button></td>
       
       </tr>
       `;
@@ -255,7 +403,7 @@ const SaveEditExpances=()=>
     document.getElementById("TotalExpanceAmount").innerHTML = `${CatExpance}`;
 
     
-    document.getElementById("AvalibleBalanceAmount").innerHTML = `${TotalCatexpance-CatExpance}`;
+    document.getElementById("AvalibleBalanceAmount").innerHTML = `${TotalCatexpance-CatExpance} `;
   }
   
   

@@ -49,10 +49,15 @@ AddExpanceBtn.addEventListener("click", () => {
       // console.log(currentamt);
       data[index].AvalibleAmount =
         data[index].AvalibleAmount - ExpanceAmount.value;
+        
+  
     }
   });
   UpdateLclStorage();
   alert(`Add ${ExpanceName.value} In ${text} Category`);
+  document.getElementById("ExpanceName").value="";
+  document.getElementById("ExpanceDescription").value="";
+  document.getElementById("ExpanceAmount").value="";
   loadAddExpances();
 });
 
@@ -78,9 +83,11 @@ const CheckExpanceLimit = (e) => {
     parseInt(data[SeletedCategoryIndex].AvalibleAmount)
   ) {
     document.getElementById("ExpanceAmount").style.color = "black";
+    document.getElementById("Alart").style.display="none"
     ExpanceLimitAlertFlag = 0;
   } else {
     document.getElementById("ExpanceAmount").style.color = "red";
+    document.getElementById("Alart").style.display="inline-block"
     if (ExpanceLimitAlertFlag == 0) {
       if (
         confirm(
