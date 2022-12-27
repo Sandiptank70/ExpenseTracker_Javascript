@@ -30,6 +30,9 @@ const loadAddExpances = () => {
   document.getElementById("ExpanceName").disabled = true;
   document.getElementById("ExpanceDescription").disabled = true;
   document.getElementById("ExpanceAmount").disabled = true;
+  document.getElementById("date").disabled = true;
+  document.getElementById("date").valueAsDate = new Date();
+  // alert(document.getElementById("date").valueAsDate.toLocaleDateString())
 };
 AddExpanceBtn.addEventListener("click", () => {
   var text = CategoryList.options[CategoryList.selectedIndex].text;
@@ -45,6 +48,7 @@ AddExpanceBtn.addEventListener("click", () => {
       Current.ExpanceName.push(ExpanceName.value);
       Current.ExpanceDescription.push(Description.value);
       Current.ExpanceAmount.push(ExpanceAmount.value);
+      Current.Date.push(document.getElementById("date").valueAsDate.toLocaleDateString())
       // let currentamt=data[index].AvalibleAmount
       // console.log(currentamt);
       data[index].AvalibleAmount =
@@ -68,6 +72,7 @@ const IndexofCategory = () => {
     document.getElementById("ExpanceName").disabled = false;
     document.getElementById("ExpanceDescription").disabled = false;
     document.getElementById("ExpanceAmount").disabled = false;
+    document.getElementById("date").disabled = false;
   }
 };
 

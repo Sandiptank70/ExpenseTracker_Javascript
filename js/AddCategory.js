@@ -70,6 +70,7 @@ const myCreateFunction=()=> {
         ExpanceLimit: Exp,
         ExpanceName: [],
         ExpanceDescription: [],
+        Date:[],
         ExpanceAmount: [],
         AvalibleAmount:Exp
       };
